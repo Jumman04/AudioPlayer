@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Background color (the unfilled part) -->
+    <item>
+        <shape>
+            <corners android:radius="4dp" />
+            <solid android:color="#d3d3d3" /> <!-- Light grey background -->
+        </shape>
+    </item>
+
+    <!-- Progress color (the filled part) -->
+    <item>
+        <clip android:clipOrientation="horizontal" android:gravity="left">
+            <shape>
+                <corners android:radius="4dp" />
+                <solid android:color="#4b60e6" /> <!-- The color of the progress -->
+            </shape>
+        </clip>
+    </item>
+
+</layer-list>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    android:padding="20dp"
+    >
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
+
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="21.7dp"
+            android:layout_height="24dp"
+            android:src="@drawable/back"
+
+
+            />
+
+
+
+        <TextView
+            android:id="@+id/song_name_title"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Now playing"
+            android:layout_centerInParent="true"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#F2F2F2"
+            android:gravity="center"
+
+            />
+
+
+
+
+    </RelativeLayout>
+
+
+
+
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="25dp"
+        >
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/player_album_art"
+            android:layout_width="304dp"
+            android:layout_height="319dp"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
+            android:layout_gravity="center"
+            android:src="@drawable/demo"
+            />
+
+        <TextView
+            android:id="@+id/player_song_name"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Song Name"
+            android:textSize="24sp"
+            android:layout_gravity="center"
+            android:paddingTop="16dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="#F2F2F2"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit ="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:layout_marginTop="50dp"
+            />
+
+        <TextView
+            android:id="@+id/player_artist_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Artist Name"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:textColor="#8E8E8E"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            android:layout_marginTop="30dp"
+            >
+
+            <!-- SeekBar -->
+            <SeekBar
+                android:id="@+id/songSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginTop="30dp"
+                android:clickable="true"
+                android:clipChildren="false"
+                android:enabled="true"
+                android:focusable="true"
+                android:max="100"
+                android:progress="50"
+                android:progressDrawable="@drawable/custom_seekbar"
+                android:thumb="@android:color/transparent"
+
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <!-- Time display under the SeekBar -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <!-- Start time (progress) -->
+                <TextView
+                    android:id="@+id/tvProgressStart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0:00"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="15dp"
+                    />
+
+                <!-- End time (total time) -->
+                <TextView
+                    android:id="@+id/tvProgressEnd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3:15"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"
+                    />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+
+            >
+
+            <ImageView
+                android:id="@+id/shuffle_button"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/shuffle_off"
+                android:layout_weight="1"
+                />
+
+            <ImageView
+                android:id="@+id/prev_button"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/prev"
+                android:layout_weight="1"
+                />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/play_pause_button"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/pause"
+                android:scaleType="centerCrop"
+                android:tag="IS_PLAYING"
+
+
+
+                />
+
+            <ImageView
+
+                android:id="@+id/next_button"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_weight="1"
+                android:src="@drawable/next"
+
+                />
+
+            <ImageView
+
+                android:id="@+id/repeat_button"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/repeat_off"
+                android:layout_weight="1"
+
+                />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</LinearLayout>
