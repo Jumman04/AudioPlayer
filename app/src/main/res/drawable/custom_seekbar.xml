@@ -11,7 +11,9 @@
 
     <!-- Progress color (the filled part) -->
     <item>
-        <clip android:clipOrientation="horizontal" android:gravity="left">
+        <clip
+            android:clipOrientation="horizontal"
+            android:gravity="left">
             <shape>
                 <corners android:radius="4dp" />
                 <solid android:color="#4b60e6" /> <!-- The color of the progress -->

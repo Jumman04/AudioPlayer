@@ -16,12 +16,11 @@ import com.google.android.material.shape.ShapeAppearanceModel;
 public class AllSongsHolder extends ViewHolder {
 
 
-    public ShapeableImageView song_image ;
-    float radius = 10f;
-    public ImageView three_dots;
-    public TextView player_song_name;
-    public TextView player_artist_name;
-
+    public final ShapeableImageView song_image;
+    public final ImageView three_dots;
+    public final TextView player_song_name;
+    public final TextView player_artist_name;
+    final float radius = 10f;
 
 
     public AllSongsHolder(@NonNull View itemView) {
@@ -38,17 +37,9 @@ public class AllSongsHolder extends ViewHolder {
     }
 
 
-    public void SHAPED_IMAGE_VIEW(){
-
-        ShapeAppearanceModel shapeAppearanceModel = ShapeAppearanceModel.builder()
-                .setTopLeftCorner(CornerFamily.ROUNDED, radius)
-                .setBottomLeftCorner(CornerFamily.ROUNDED, radius)
-                .setBottomRightCorner(CornerFamily.ROUNDED, radius)
-                .setTopRightCorner(CornerFamily.ROUNDED, radius)
-                .build();
+    public void SHAPED_IMAGE_VIEW() {
+        ShapeAppearanceModel shapeAppearanceModel = ShapeAppearanceModel.builder().setTopLeftCorner(CornerFamily.ROUNDED, radius).setBottomLeftCorner(CornerFamily.ROUNDED, radius).setBottomRightCorner(CornerFamily.ROUNDED, radius).setTopRightCorner(CornerFamily.ROUNDED, radius).build();
         song_image.setShapeAppearanceModel(shapeAppearanceModel);
-
-
     }
 
 

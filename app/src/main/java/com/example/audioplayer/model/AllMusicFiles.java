@@ -1,18 +1,19 @@
 package com.example.audioplayer.model;
 
 
+import androidx.annotation.Keep;
 
+@Keep
 public class AllMusicFiles {
+    final String path;
+    final String songName;
+    final String albumName;
+    final String artistName;
+    final String duration;
+    final String id;
 
-    String path;
-    String songName;
-    String albumName ;
-    String artistName;
-    String duration ;
-    String id;
 
-
-    public AllMusicFiles(String path, String songName, String albumName, String artistName , String duration , String id) {
+    public AllMusicFiles(String path, String songName, String albumName, String artistName, String duration, String id) {
         this.path = path;
         this.songName = songName;
         this.albumName = albumName;
@@ -21,12 +22,8 @@ public class AllMusicFiles {
         this.id = id;
     }
 
-    public AllMusicFiles() {
 
-
-    }
-
-    public String getPath(){
+    public String getPath() {
         return path;
     }
 
@@ -45,8 +42,6 @@ public class AllMusicFiles {
     public String getDuration() {
         return duration;
     }
-
-
 
     public String getId() {
         return id;

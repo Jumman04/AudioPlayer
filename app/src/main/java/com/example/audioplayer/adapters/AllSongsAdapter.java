@@ -24,77 +24,54 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class AllSongsAdapter extends RecyclerView.Adapter<AllSongsHolder> {
 
-    Context context;
-    public static List<AllMusicFiles> allSongsList = new ArrayList<>();
+
+    private final List<AllMusicFiles> allSongsList;
 
 
-
-
-    public AllSongsAdapter(Context context, List<AllMusicFiles> allSongsList) {
-        this.context = context;
+    public AllSongsAdapter(List<AllMusicFiles> allSongsList) {
         this.allSongsList = allSongsList;
-
     }
 
     @NonNull
     @Override
     public AllSongsHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        View view = LayoutInflater.from(context).inflate(R.layout.all_item, parent, false);
-
-        return new AllSongsHolder(view);
+        return new AllSongsHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.all_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AllSongsHolder holder,  int position) {
+    public void onBindViewHolder(@NonNull AllSongsHolder holder, int position) {
 
         holder.player_song_name.setText(allSongsList.get(position).getSongName());
         holder.player_artist_name.setText(allSongsList.get(position).getArtistName());
 
-        byte[] image = getAlbumArt(allSongsList.get(position).getPath());
+        Context context = holder.itemView.getContext();
+        byte[] image = getAlbumArt(context, allSongsList.get(position).getPath());
 
-        if (image != null){
-
-            Glide.with(context).asBitmap().load(image).into(holder.song_image);
-
-        }else {
-
-            Glide.with(context).load(R.drawable.demo).into(holder.song_image);
-        }
-
-
-
+        if (image != null) Glide.with(context).asBitmap().load(image).into(holder.song_image);
+        else Glide.with(context).load(R.drawable.demo).into(holder.song_image);
 
         holder.itemView.setOnClickListener(v -> {
-
             Intent intent = new Intent(context, PlayerActivity.class);
-            intent.putExtra("position",position);
-            intent.putExtra("All","all_music");
+            intent.putExtra("position", position);
+            intent.putExtra("All", "all_music");
             context.startActivity(intent);
 
         });
 
         holder.three_dots.setOnClickListener(v -> {
-
-
             PopupMenu popupMenu = new PopupMenu(context, holder.three_dots);
             popupMenu.getMenuInflater().inflate(R.menu.menu_more, popupMenu.getMenu());
             popupMenu.show();
 
             popupMenu.setOnMenuItemClickListener(item -> {
-
                 if (item.getItemId() == R.id.delete) {
-
-                    deleteFile(position,v);
+                    deleteFile(position, v);
                 }
-
                 return true;
-
             });
 
 
@@ -103,25 +80,17 @@ public class AllSongsAdapter extends RecyclerView.Adapter<AllSongsHolder> {
     }
 
     private void deleteFile(int position, View v) {
-
-
-        Uri contentUri = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
-                Long.parseLong(allSongsList.get(position).getId()));
+        Uri contentUri = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, Long.parseLong(allSongsList.get(position).getId()));
         File file = new File(allSongsList.get(position).getPath());
         boolean deleted = file.delete();
 
-        if (deleted){
-            context.getContentResolver().delete(contentUri, null, null);
-
-
+        if (deleted) {
+            v.getContext().getContentResolver().delete(contentUri, null, null);
             allSongsList.remove(position);
-
             notifyItemRemoved(position);
-
             notifyItemRangeChanged(position, allSongsList.size());
             Snackbar.make(v, "Song Deleted", Snackbar.LENGTH_SHORT).show();
-        }else {
-
+        } else {
             Snackbar.make(v, "Can't Delete", Snackbar.LENGTH_SHORT).show();
         }
 
@@ -133,24 +102,14 @@ public class AllSongsAdapter extends RecyclerView.Adapter<AllSongsHolder> {
         return allSongsList.size();
     }
 
-    private byte[] getAlbumArt(String uri){
-        //noinspection resource
-        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
-
-
-        retriever.setDataSource(context, Uri.parse(uri));
-        byte [] data = retriever.getEmbeddedPicture();
-
-        try {
-            retriever.release();
+    private byte[] getAlbumArt(Context context, String uri) {
+        try (MediaMetadataRetriever retriever = new MediaMetadataRetriever()) {
+            retriever.setDataSource(context, Uri.parse(uri));
+            return retriever.getEmbeddedPicture();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            return null;
         }
-
-        return data;
-
     }
-
 
 
 }

@@ -10,43 +10,40 @@
         android:id="@+id/song_image"
         android:layout_width="88dp"
         android:layout_height="88dp"
-        android:src="@drawable/demo"
-        android:scaleType="fitXY"
         android:layout_centerVertical="true"
-
-        />
+        android:scaleType="fitXY"
+        android:src="@drawable/demo" />
 
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:paddingLeft="15dp"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="90dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="90dp"
+        android:orientation="vertical"
+        android:paddingStart="15dp"
+        android:paddingEnd="0dp">
 
-        >
         <TextView
             android:id="@+id/player_song_name"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="15sp"
-            android:textColor="#F2F2F2"
             android:maxLines="1"
             android:text="@string/app_name"
-            />
+            android:textColor="#F2F2F2"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
         <TextView
 
             android:id="@+id/player_artist_name"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:textSize="13sp"
-            android:textColor="#DEDEDE"
             android:maxLines="1"
             android:text="@string/app_name"
-            />
+            android:textColor="#DEDEDE"
+            android:textSize="13sp" />
 
 
     </LinearLayout>
@@ -55,13 +52,12 @@
         android:id="@+id/three_dots"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
         android:src="@drawable/dots"
 
         />
-
 
 
 </RelativeLayout>
